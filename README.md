@@ -1,7 +1,7 @@
 # Energy Extension Specification
 
 - **Title:** Energy
-- **Identifier:** <https://stac-extensions.github.io/energy/v0.1.0/schema.json>
+- **Identifier:** <https://energybench-association.github.io/stac-extension-energy/v0.1.0/schema.json>
 - **Field Name Prefix:** energy
 - **Scope:** Item, Collection
 - **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Proposal

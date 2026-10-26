@@ -1,7 +1,7 @@
 {
   "stac_version": "1.0.0",
   "stac_extensions": [
-    "https://stac-extensions.github.io/energy/v0.1.0/schema.json"
+    "https://energybench-association.github.io/stac-extension-energy/v0.1.0/schema.json"
   ],
   "type": "Feature",
   "id": "energy-entity-003",
