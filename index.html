@@ -1,5 +1,30 @@
 <html>
+  <head>
+    <meta charset="utf-8">
+  </head>
   <body>
-    <script type="text/javascript" src="https://stac-extensions.github.io/js/listing.js"></script>
-  <body>
+    <script type="text/javascript">
+      // Same listing as https://stac-extensions.github.io/js/listing.js, which hardcodes
+      // the stac-extensions org; here the owner comes from the Pages host instead.
+      (async () => {
+        const owner = window.location.hostname.split('.')[0]
+        const repo = window.location.pathname.split('/')[1]
+        let htmlString = `<h1>STAC Extension '${repo}' Schemas</h1>`;
+        try {
+          const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/trees/gh-pages?recursive=true`);
+          const data = await response.json();
+          const schemas = data.tree.filter(f => f.path.startsWith('v') && f.path.endsWith('json'))
+          htmlString += '<ul>';
+          for (let s of schemas) {
+            htmlString += `<li><a href="${s.path}">${s.path}</a></li>`;
+          }
+          htmlString += '</ul>';
+        } catch (e) {
+          const tree = `https://github.com/${owner}/${repo}/tree/gh-pages`
+          htmlString += `<p>Could not list the schemas, see <a href="${tree}">${tree}</a>.</p>`;
+        }
+        document.getElementsByTagName('body')[0].innerHTML = htmlString;
+      })()
+    </script>
+  </body>
 </html>
